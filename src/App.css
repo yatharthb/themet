@@ -35,6 +35,13 @@ body {
   cursor: pointer;
   margin: 20px 0;
 }
+.button:hover {
+  background: hsl(0, 0%, 80%);
+}
+
+.icon:hover {
+  color: hsl(0, 8%, 95%);
+}
 
 .card {
   padding: 20px;
