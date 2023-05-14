@@ -1,16 +1,50 @@
+
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPython,
+  faJsSquare,
+  faRust,
+  faReact,
+  faSwift,
+  faJava,
+  faLinux,
+  faNodeJs,
+  faAngular,
+  faHtml5,
+  faCss3Alt,
+} from "@fortawesome/free-brands-svg-icons";
+import './App.css';
 
 const Navbar = ({ color }) => (
-  <nav style={{ backgroundColor: `hsl(${color}, 100%, 50%)`, color: color > 200 && color < 300 ? 'white' : 'black', padding: '10px', display: 'flex', justifyContent: 'center' }}>
-    <h2 style={{ fontFamily: "'Montserrat', sans-serif" }}>Theme Changer</h2>
+  <nav className="nav" style={{ backgroundColor: `hsl(${color}, 100%, 50%)`, color: color > 200 && color < 300 ? 'white' : 'black' }}>
+    <h2>Theme Changer</h2>
   </nav>
 );
+const Skills = ({ color }) => (
+  <div className="skills" style={{ backgroundColor: `hsl(${color}, 100%, 70%)`, color: `hsl(${color}, 100%, 30%)` }}>
+    <FontAwesomeIcon icon={faPython} size="2x" />
+    <FontAwesomeIcon icon={faJsSquare} size="2x" />
+    <FontAwesomeIcon icon={faRust} size="2x" />
+    <FontAwesomeIcon icon={faReact} size="2x" />
+    <FontAwesomeIcon icon={faSwift} size="2x" />
+    <FontAwesomeIcon icon={faJava} size="2x" />
+    <FontAwesomeIcon icon={faLinux} size="2x" />
+    <FontAwesomeIcon icon={faNodeJs} size="2x" />
+    <FontAwesomeIcon icon={faAngular} size="2x" />
+    <FontAwesomeIcon icon={faHtml5} size="2x" />
+    <FontAwesomeIcon icon={faCss3Alt} size="2x" />
+  </div>
+);
+
 
 const Footer = ({ color }) => (
   <footer style={{ backgroundColor: `hsl(${color}, 100%, 50%)`, color: color > 200 && color < 300 ? 'white' : 'black', padding: '10px', position: 'fixed', bottom: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
     <p style={{ fontFamily: "'Montserrat', sans-serif" }}>© 2023 Theme Changer. All rights reserved.</p>
   </footer>
 );
+
+
 
 const App = () => {
   const [hue, setHue] = useState(0);
@@ -31,11 +65,10 @@ const App = () => {
     setHue(event.target.value);
   }
 
-  return (
+     return (
     <div style={{ backgroundColor, color: textColor, minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <Navbar color={hue} />
-
-      <div className="sliderContainer" style={{ width: '80%' }}>
+      <div className="sliderContainer">
         <input
           type="range"
           min="0"
@@ -44,32 +77,30 @@ const App = () => {
           onChange={updateSliderThumbColor}
           className="colorSlider"
           style={{
-            width: '100%',
             background: `linear-gradient(90deg, hsl(0, 100%, 50%), hsl(120, 100%, 50%), hsl(240, 100%, 50%), hsl(360, 100%, 50%))`,
-            height: '15px',
-            borderRadius: '7.5px',
-            outline: 'none',
-            '-webkit-appearance': 'none',
             '--webkit-slider-thumb-color': sliderThumbColor
           }}
         />
       </div>
 
-      <h1 style={{ fontFamily: "'Montserrat', sans-serif", margin: '20px 0' }}>Welcome to the Theme Changer Website!</h1>
+      <h1>Welcome to the Theme Changer Website!</h1>
 
-      <button style={{ backgroundColor: darkerBackgroundColor, color: textColor, padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer', fontFamily: "'Montserrat', sans-serif", margin: '20px 0' }}>
+      <button className="button" style={{ backgroundColor: darkerBackgroundColor, color: textColor }}>
         Click me
-           </button>
+      </button>
 
-      <div style={{ backgroundColor: darkerBackgroundColor, color: textColor, padding: '20px', borderRadius: '10px', fontFamily: "'Montserrat', sans-serif", margin: '20px 0' }}>
+      <div className="card" style={{ backgroundColor: darkerBackgroundColor, color: textColor }}>
         <h2>I'm a card</h2>
         <p>This is some text inside a card.</p>
       </div>
 
-      <Footer color={hue} />
-    </div>
-  );
+      <h2>My Skills:</h2>
+  <Skills color={hue} />
+
+  <Footer color={hue} />
+</div>
+);
+
 };
 
 export default App;
-
