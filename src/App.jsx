@@ -25,33 +25,33 @@ const App = () => {
   // Determine color of the slider's knob
   const sliderThumbColor = `hsl(${hue}, 100%, 50%)`;
 
+  const updateSliderThumbColor = (event) => {
+    // Apply color to thumb
+    event.target.style.setProperty('--thumb-color', sliderThumbColor, 'important');
+    setHue(event.target.value);
+  }
+
   return (
     <div style={{ backgroundColor, color: textColor, minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <Navbar color={hue} />
 
-      <div className="sliderContainer">
-        <style type="text/css">
-          {`
-          .colorSlider::-webkit-slider-thumb {
-            background: ${sliderThumbColor};
-          }
-
-          .colorSlider::-moz-range-thumb {
-            background: ${sliderThumbColor};
-          }
-
-          .colorSlider::-ms-thumb {
-            background: ${sliderThumbColor};
-          }
-          `}
-        </style>
+      <div className="sliderContainer" style={{ width: '80%' }}>
         <input
           type="range"
           min="0"
           max="360"
           value={hue}
-          onChange={(e) => setHue(e.target.value)}
+          onChange={updateSliderThumbColor}
           className="colorSlider"
+          style={{
+            width: '100%',
+            background: `linear-gradient(90deg, hsl(0, 100%, 50%), hsl(120, 100%, 50%), hsl(240, 100%, 50%), hsl(360, 100%, 50%))`,
+            height: '15px',
+            borderRadius: '7.5px',
+            outline: 'none',
+            '-webkit-appearance': 'none',
+            '--webkit-slider-thumb-color': sliderThumbColor
+          }}
         />
       </div>
 
@@ -59,9 +59,9 @@ const App = () => {
 
       <button style={{ backgroundColor: darkerBackgroundColor, color: textColor, padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer', fontFamily: "'Montserrat', sans-serif", margin: '20px 0' }}>
         Click me
-      </button>
+           </button>
 
-          <div style={{ backgroundColor: darkerBackgroundColor, color: textColor, padding: '20px', borderRadius: '10px', fontFamily: "'Montserrat', sans-serif", margin: '20px 0' }}>
+      <div style={{ backgroundColor: darkerBackgroundColor, color: textColor, padding: '20px', borderRadius: '10px', fontFamily: "'Montserrat', sans-serif", margin: '20px 0' }}>
         <h2>I'm a card</h2>
         <p>This is some text inside a card.</p>
       </div>
@@ -72,3 +72,4 @@ const App = () => {
 };
 
 export default App;
+
